@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Command *)",
+      "Bash(jq --version)",
+      "Bash(bash /c/Users/hikar/.claude/statusline-command.sh)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl *)",
+      "Bash(wsl --status)",
+      "Bash(bash --version)",
+      "Bash(wsl -e bash -c \"jq --version\")",
+      "Bash(wsl -e bash -c 'echo WSL_HOME=$HOME')",
+      "Bash(where jq *)",
+      "Read(//c/Users/hikar/.claude/**)",
+      "Bash(winget --version)",
+      "Bash(scoop --version)",
+      "Bash(winget install *)",
+      "Bash(chmod +x ~/.claude/statusline-command.sh)",
+      "Bash(chmod +x ~/.claude/hooks/session-time.sh)",
+      "Bash(bash ~/.claude/hooks/session-time.sh)",
+      "Bash(echo \"---EXIT:$?---\")",
+      "Bash(bash ~/.claude/statusline-command.sh)",
+      "Bash(claude *)",
+      "Read(//c/Users/hikar/**)",
+      "Bash(git *)",
+      "PowerShell(Set-ExecutionPolicy *)",
+      "PowerShell(New-Item *)",
+      "PowerShell($env:CLAUDE_CODE_NO_FLICKER)",
+      "WebFetch(domain:cc.lifehacker.tw)"
+    ]
+  }
+}
