@@ -26,7 +26,9 @@
       "PowerShell(Set-ExecutionPolicy *)",
       "PowerShell(New-Item *)",
       "PowerShell($env:CLAUDE_CODE_NO_FLICKER)",
-      "WebFetch(domain:cc.lifehacker.tw)"
+      "WebFetch(domain:cc.lifehacker.tw)",
+      "Bash(mkdir -p /mnt/d/ClaudeWorkspace/flow_report)",
+      "Bash(mkdir -p /mnt/d/ClaudeWorkspace/reports)"
     ]
   }
 }
