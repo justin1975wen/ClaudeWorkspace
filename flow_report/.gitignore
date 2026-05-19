@@ -1,0 +1,15 @@
+# 登入狀態（含 session cookie，勿 commit）
+auth_state.json
+NEEDS_REAUTH.txt
+
+# Python 虛擬環境
+.venv/
+
+# 日誌與除錯截圖
+*.log
+debug/
+
+# 暫時診斷腳本
+diagnose*.py
+
+# 下載的報表（放 reports/ 不進 git）
