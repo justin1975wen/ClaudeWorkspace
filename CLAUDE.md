@@ -30,6 +30,60 @@ Pre-allowed operations include: `PowerShell`, `Bash` (curl, git, claude CLI, WSL
 
 ---
 
+## Projects
+
+### `flow_report/` — Flow WPG Holdings 工時統計表自動下載
+
+Downloads a work-hours Excel report from the internal Flow system using Playwright + urllib. Uses a **traditional Python venv** (not uv) managed by `install.ps1`.
+
+**First-time setup:**
+```powershell
+cd flow_report
+.\install.ps1       # creates .venv, installs packages, installs Playwright Chromium
+.\setup_auth.ps1    # interactive Microsoft login (saves auth_state.json)
+.\create_task.ps1   # registers Windows Task Scheduler daily job
+```
+
+**Run manually:**
+```powershell
+& "D:\ClaudeWorkspace\flow_report\.venv\Scripts\python.exe" download_report.py
+# or with visible browser for debugging:
+& "D:\ClaudeWorkspace\flow_report\.venv\Scripts\python.exe" download_report.py --headed
+```
+
+**Exit codes:** 0 = success, 2 = session expired (re-run `setup_auth.ps1`), 1 = other error.
+
+**Key paths:**
+- `auth_state.json` — Playwright browser session (refreshed on each successful run)
+- `D:\ClaudeWorkspace\reports\` — output xlsx files (named `工時統計表_YYYYMMDD.xlsx`)
+- `download.log` — per-run log
+- `scheduler.log` — Task Scheduler run log
+- `debug/` — screenshots taken at each step; `debug/error_response.html` on POST failure
+
+**Architecture:** Playwright navigates to the report page → clicks the 工時統計表 tab → waits for the Statistics iframe → sets date range via Telerik RadDatePicker JS API → clicks 查詢 → then bypasses Playwright's download interception by re-POSTing the form with cookies via `urllib` directly, and converts the HTML-XLS response to real xlsx via pandas.
+
+### `postal-helper/` — 台灣郵遞區號查詢 CLI
+
+Single-file CLI that queries the `zip5.5432.tw` API. Uses **uv** (no venv needed).
+
+```powershell
+# Windows (double-click or run):
+.\postal-helper\zipcode.bat
+
+# Direct:
+uv run postal-helper\zipcode.py
+```
+
+---
+
+## Python 環境
+
+- `flow_report/` uses a **traditional venv** at `flow_report/.venv/` (managed by `install.ps1`); do not use uv here.
+- `postal-helper/` uses **uv** (`uv run`); no venv setup needed.
+- For any new scripts in this workspace, prefer **uv**.
+
+---
+
 ## 12-Rule Behavior Guidelines
 
 These rules apply to every task in this project unless explicitly overridden.
